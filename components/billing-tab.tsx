@@ -14,6 +14,7 @@ const currentPackage = {
   type: "Prepaid",
   price: "$114.00 / month",
   status: "Paid" as const,
+  paidDate: "Feb 10, 2026",
 }
 
 const scheduledPackage = {
@@ -101,24 +102,18 @@ function getStatusBadge(status: string) {
   )
 }
 
-function getTypeBadge(type: "Default" | "Custom") {
+function getTypeText(type: "Default" | "Custom") {
   if (type === "Default") {
     return (
-      <Badge
-        variant="outline"
-        className="border-[#90caf9] bg-[#e3f2fd] text-[#1565c0] hover:bg-[#e3f2fd]"
-      >
+      <span className="text-xs text-[#5f6368]">
         {type}
-      </Badge>
+      </span>
     )
   }
   return (
-    <Badge
-      variant="outline"
-      className="border-[#ffcc80] bg-[#fff3e0] text-[#e65100] hover:bg-[#fff3e0]"
-    >
+    <span className="text-xs text-[#5f6368]">
       {type}
-    </Badge>
+    </span>
   )
 }
 
@@ -159,7 +154,12 @@ export function BillingTab() {
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-sm text-[#5f6368]">Status</span>
-                {getStatusBadge(currentPackage.status)}
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-medium text-[#202124]">
+                    {currentPackage.paidDate}
+                  </span>
+                  {getStatusBadge(currentPackage.status)}
+                </div>
               </div>
             </div>
           </div>
@@ -191,14 +191,13 @@ export function BillingTab() {
                 </span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm text-[#5f6368]">Status</span>
-                {getStatusBadge(scheduledPackage.status)}
-              </div>
-              <div className="flex items-center justify-between">
                 <span className="text-sm text-[#5f6368]">Charge date</span>
-                <span className="text-sm font-medium text-[#202124]">
-                  {scheduledPackage.chargeDate}
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-medium text-[#202124]">
+                    {scheduledPackage.chargeDate}
+                  </span>
+                  {getStatusBadge(scheduledPackage.status)}
+                </div>
               </div>
             </div>
           </div>
@@ -221,6 +220,9 @@ export function BillingTab() {
                   Rate plan name
                 </TableHead>
                 <TableHead className="text-xs font-medium text-[#5f6368]">
+                  Type
+                </TableHead>
+                <TableHead className="text-xs font-medium text-[#5f6368]">
                   Price per message
                 </TableHead>
               </TableRow>
@@ -228,16 +230,14 @@ export function BillingTab() {
             <TableBody>
               {ratePlans.map((plan) => (
                 <TableRow key={plan.channel} className="hover:bg-[#f8f9fa]">
-                  <TableCell>
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm font-medium text-[#202124]">
-                        {plan.channel}
-                      </span>
-                      {getTypeBadge(plan.type)}
-                    </div>
+                  <TableCell className="text-sm font-medium text-[#202124]">
+                    {plan.channel}
                   </TableCell>
                   <TableCell className="text-sm text-[#3c4043]">
                     {plan.planName}
+                  </TableCell>
+                  <TableCell>
+                    {getTypeText(plan.type)}
                   </TableCell>
                   <TableCell className="text-sm text-[#3c4043]">
                     {plan.pricePerMessage}

@@ -105,13 +105,13 @@ function getStatusBadge(status: string) {
 function getTypeText(type: "Default" | "Custom") {
   if (type === "Default") {
     return (
-      <span className="text-xs text-[#5f6368]">
+      <span className="text-sm text-[#3c4043]">
         {type}
       </span>
     )
   }
   return (
-    <span className="text-xs text-[#5f6368]">
+    <span className="text-sm text-[#3c4043]">
       {type}
     </span>
   )

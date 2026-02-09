@@ -21,6 +21,7 @@ const scheduledPackage = {
   type: "Prepaid",
   price: "$345.00 / month",
   status: "Unpaid" as const,
+  chargeDate: "Feb 20, 2026",
 }
 
 const ratePlans = [
@@ -192,6 +193,12 @@ export function BillingTab() {
               <div className="flex items-center justify-between">
                 <span className="text-sm text-[#5f6368]">Status</span>
                 {getStatusBadge(scheduledPackage.status)}
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-[#5f6368]">Charge date</span>
+                <span className="text-sm font-medium text-[#202124]">
+                  {scheduledPackage.chargeDate}
+                </span>
               </div>
             </div>
           </div>

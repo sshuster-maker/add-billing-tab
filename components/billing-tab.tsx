@@ -152,9 +152,19 @@ export function BillingTab() {
           Package
         </h3>
         <Tabs defaultValue="current" className="w-full">
-          <TabsList className="mb-4">
-            <TabsTrigger value="current">Current</TabsTrigger>
-            <TabsTrigger value="scheduled">Scheduled</TabsTrigger>
+          <TabsList className="mb-4 h-auto gap-0 rounded-none border-b border-[#e0e0e0] bg-transparent p-0">
+            <TabsTrigger
+              value="current"
+              className="rounded-none border-b-2 border-transparent px-5 py-3 text-sm font-medium text-[#5f6368] shadow-none data-[state=active]:border-[#1a73e8] data-[state=active]:bg-transparent data-[state=active]:text-[#1a73e8] data-[state=active]:shadow-none"
+            >
+              CURRENT
+            </TabsTrigger>
+            <TabsTrigger
+              value="scheduled"
+              className="rounded-none border-b-2 border-transparent px-5 py-3 text-sm font-medium text-[#5f6368] shadow-none data-[state=active]:border-[#1a73e8] data-[state=active]:bg-transparent data-[state=active]:text-[#1a73e8] data-[state=active]:shadow-none"
+            >
+              SCHEDULED
+            </TabsTrigger>
           </TabsList>
 
           {/* Current Package Tab */}

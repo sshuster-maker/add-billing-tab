@@ -15,6 +15,7 @@ const currentPackage = {
   price: "$114.00 / month",
   status: "Paid" as const,
   paidDate: "Feb 10, 2026",
+  fromDate: "Feb 10, 2026",
 }
 
 const scheduledPackage = {
@@ -22,7 +23,8 @@ const scheduledPackage = {
   type: "Prepaid",
   price: "$345.00 / month",
   status: "Unpaid" as const,
-  chargeDate: "Feb 20, 2026",
+  chargeDate: "Mar 11, 2026",
+  fromDate: "Mar 11, 2026",
 }
 
 const ratePlans = [
@@ -79,6 +81,27 @@ function formatNumber(num: number) {
   return num.toLocaleString()
 }
 
+function addMonths(dateStr: string, months: number) {
+  // Input format is like "Feb 10, 2026" (en-US).
+  const parsed = new Date(dateStr)
+  if (Number.isNaN(parsed.getTime())) return dateStr
+
+  const d = new Date(parsed)
+  const originalDay = d.getDate()
+  d.setMonth(d.getMonth() + months)
+
+  // Handle month rollover (e.g. Jan 31 + 1 month)
+  if (d.getDate() !== originalDay) {
+    d.setDate(0)
+  }
+
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  }).format(d)
+}
+
 function getStatusBadge(status: string) {
   const lower = status.toLowerCase()
   if (lower === "active" || lower === "paid") {
@@ -111,7 +134,7 @@ function getTypeText(type: "Default" | "Custom") {
     )
   }
   return (
-    <span className="text-sm text-[#3c4043]">
+    <span className="text-sm text-[#5f6368]">
       {type}
     </span>
   )
@@ -141,19 +164,21 @@ export function BillingTab() {
                 </span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm text-[#5f6368]">Type</span>
-                <span className="text-sm text-[#3c4043]">
-                  {currentPackage.type}
-                </span>
-              </div>
-              <div className="flex items-center justify-between">
                 <span className="text-sm text-[#5f6368]">Price</span>
                 <span className="text-sm font-medium text-[#202124]">
                   {currentPackage.price}
                 </span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm text-[#5f6368]">Status</span>
+                <span className="text-sm text-[#5f6368]">From / To</span>
+                <span className="text-sm font-medium text-[#3c4043]">
+                  {currentPackage.fromDate} – {addMonths(currentPackage.fromDate, 1)}
+                </span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-medium text-[#5f6368]">
+                  Charge date / status
+                </span>
                 <div className="flex items-center gap-2">
                   <span className="text-sm font-medium text-[#202124]">
                     {currentPackage.paidDate}
@@ -179,19 +204,21 @@ export function BillingTab() {
                 </span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm text-[#5f6368]">Type</span>
-                <span className="text-sm text-[#3c4043]">
-                  {scheduledPackage.type}
-                </span>
-              </div>
-              <div className="flex items-center justify-between">
                 <span className="text-sm text-[#5f6368]">Price</span>
                 <span className="text-sm font-medium text-[#202124]">
                   {scheduledPackage.price}
                 </span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm text-[#5f6368]">Charge date</span>
+                <span className="text-sm text-[#5f6368]">From / To</span>
+                <span className="text-sm font-medium text-[#3c4043]">
+                  {scheduledPackage.fromDate} – {addMonths(scheduledPackage.fromDate, 1)}
+                </span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-[#5f6368]">
+                  Charge date/ status
+                </span>
                 <div className="flex items-center gap-2">
                   <span className="text-sm font-medium text-[#202124]">
                     {scheduledPackage.chargeDate}
@@ -223,7 +250,7 @@ export function BillingTab() {
                   Type
                 </TableHead>
                 <TableHead className="text-xs font-medium text-[#5f6368]">
-                  Price per message
+                  Price per message/email
                 </TableHead>
               </TableRow>
             </TableHeader>
@@ -327,3 +354,4 @@ export function BillingTab() {
     </div>
   )
 }
+

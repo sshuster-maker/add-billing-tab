@@ -321,9 +321,11 @@ export function BillingTab() {
                     <span className="text-sm font-medium text-[#202124]">
                       {balance.channel}
                     </span>
-                    <span className="text-xs text-[#80868b]">
-                      {balance.remainingAmount} {balance.currency}
-                    </span>
+                    {balance.channel === "Viber" && (
+                      <span className="text-sm font-medium text-[#3c4043]">
+                        {balance.remainingAmount} {balance.currency}
+                      </span>
+                    )}
                   </div>
 
                   <div className="mb-2">
@@ -340,9 +342,6 @@ export function BillingTab() {
                       </span>
                       {" / "}
                       {formatNumber(balance.total)} messages
-                    </span>
-                    <span className="text-xs font-medium text-[#1a73e8]">
-                      {percentRemaining}% left
                     </span>
                   </div>
                 </div>

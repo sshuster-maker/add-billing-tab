@@ -34,20 +34,20 @@ const ratePlans = [
   {
     channel: "Viber",
     planName: "Viber Standard",
-    pricePerMessage: "$0.0350",
     type: "Default" as const,
+    ratePlanUrl: "#",
   },
   {
     channel: "WhatsApp",
     planName: "WA Business Pro",
-    pricePerMessage: "$0.0450",
     type: "Custom" as const,
+    ratePlanUrl: "#",
   },
   {
     channel: "Email",
     planName: "Email Basic",
-    pricePerMessage: "$0.0020",
     type: "Default" as const,
+    ratePlanUrl: "#",
   },
 ]
 
@@ -345,7 +345,7 @@ export function BillingTab() {
                   Type
                 </TableHead>
                 <TableHead className="text-xs font-medium text-[#5f6368]">
-                  Price per message/email
+                  Rate Plan
                 </TableHead>
               </TableRow>
             </TableHeader>
@@ -361,8 +361,15 @@ export function BillingTab() {
                   <TableCell>
                     {getTypeText(plan.type)}
                   </TableCell>
-                  <TableCell className="text-sm text-[#3c4043]">
-                    {plan.pricePerMessage}
+                  <TableCell>
+                    <a
+                      href={plan.ratePlanUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm font-medium text-[#1a73e8] hover:underline"
+                    >
+                      See Rate Plan
+                    </a>
                   </TableCell>
                 </TableRow>
               ))}

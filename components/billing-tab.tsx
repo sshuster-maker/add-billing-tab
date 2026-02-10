@@ -1,3 +1,5 @@
+"use client"
+
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import {
@@ -8,6 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 const currentPackage = {
   name: "Premium",
@@ -148,87 +151,86 @@ export function BillingTab() {
         <h3 className="mb-4 text-xs font-semibold uppercase tracking-widest text-[#5f6368]">
           Package
         </h3>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          {/* Current Package Card */}
-          <div className="rounded-lg border border-[#dadce0] bg-white">
-            <div className="border-b border-[#dadce0] bg-[#f8f9fa] px-5 py-3">
-              <span className="text-xs font-semibold uppercase tracking-wide text-[#5f6368]">
-                Current Package
-              </span>
-            </div>
-            <div className="flex flex-col gap-4 px-5 py-5">
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-[#5f6368]">Name</span>
-                <span className="text-sm font-medium text-[#202124]">
-                  {currentPackage.name}
-                </span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-[#5f6368]">Price</span>
-                <span className="text-sm font-medium text-[#202124]">
-                  {currentPackage.price}
-                </span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-[#5f6368]">From / To</span>
-                <span className="text-sm font-medium text-[#3c4043]">
-                  {currentPackage.fromDate} – {addMonths(currentPackage.fromDate, 1)}
-                </span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-sm font-medium text-[#5f6368]">
-                  Charge date / status
-                </span>
-                <div className="flex items-center gap-2">
-                  <span className="text-sm font-medium text-[#202124]">
-                    {currentPackage.paidDate}
-                  </span>
-                  {getStatusBadge(currentPackage.status)}
-                </div>
-              </div>
-            </div>
-          </div>
+        <Tabs defaultValue="current" className="w-full">
+          <TabsList className="mb-4">
+            <TabsTrigger value="current">Current</TabsTrigger>
+            <TabsTrigger value="scheduled">Scheduled</TabsTrigger>
+          </TabsList>
 
-          {/* Scheduled Package Card */}
-          <div className="rounded-lg border border-[#dadce0] bg-white">
-            <div className="border-b border-[#dadce0] bg-[#f8f9fa] px-5 py-3">
-              <span className="text-xs font-semibold uppercase tracking-wide text-[#5f6368]">
-                Scheduled Package
-              </span>
-            </div>
-            <div className="flex flex-col gap-4 px-5 py-5">
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-[#5f6368]">Name</span>
-                <span className="text-sm font-medium text-[#202124]">
-                  {scheduledPackage.name}
-                </span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-[#5f6368]">Price</span>
-                <span className="text-sm font-medium text-[#202124]">
-                  {scheduledPackage.price}
-                </span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-[#5f6368]">From / To</span>
-                <span className="text-sm font-medium text-[#3c4043]">
-                  {scheduledPackage.fromDate} – {addMonths(scheduledPackage.fromDate, 1)}
-                </span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-[#5f6368]">
-                  Charge date/ status
-                </span>
-                <div className="flex items-center gap-2">
+          {/* Current Package Tab */}
+          <TabsContent value="current">
+            <div className="rounded-lg border border-[#dadce0] bg-white">
+              <div className="flex flex-col gap-4 px-5 py-5">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-[#5f6368]">Name</span>
                   <span className="text-sm font-medium text-[#202124]">
-                    {scheduledPackage.chargeDate}
+                    {currentPackage.name}
                   </span>
-                  {getStatusBadge(scheduledPackage.status)}
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-[#5f6368]">Price</span>
+                  <span className="text-sm font-medium text-[#202124]">
+                    {currentPackage.price}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-[#5f6368]">From / To</span>
+                  <span className="text-sm font-medium text-[#3c4043]">
+                    {currentPackage.fromDate} – {addMonths(currentPackage.fromDate, 1)}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-medium text-[#5f6368]">
+                    Charge date / status
+                  </span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm font-medium text-[#202124]">
+                      {currentPackage.paidDate}
+                    </span>
+                    {getStatusBadge(currentPackage.status)}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          </TabsContent>
+
+          {/* Scheduled Package Tab */}
+          <TabsContent value="scheduled">
+            <div className="rounded-lg border border-[#dadce0] bg-white">
+              <div className="flex flex-col gap-4 px-5 py-5">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-[#5f6368]">Name</span>
+                  <span className="text-sm font-medium text-[#202124]">
+                    {scheduledPackage.name}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-[#5f6368]">Price</span>
+                  <span className="text-sm font-medium text-[#202124]">
+                    {scheduledPackage.price}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-[#5f6368]">From / To</span>
+                  <span className="text-sm font-medium text-[#3c4043]">
+                    {scheduledPackage.fromDate} – {addMonths(scheduledPackage.fromDate, 1)}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-[#5f6368]">
+                    Charge date / status
+                  </span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm font-medium text-[#202124]">
+                      {scheduledPackage.chargeDate}
+                    </span>
+                    {getStatusBadge(scheduledPackage.status)}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </TabsContent>
+        </Tabs>
       </section>
 
       {/* Balance Section */}

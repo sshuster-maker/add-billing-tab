@@ -169,36 +169,62 @@ export function BillingTab() {
 
           {/* Current Package Tab */}
           <TabsContent value="current">
-            <div className="rounded-lg border border-[#dadce0] bg-white">
-              <div className="flex flex-col gap-4 px-5 py-5">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-[#5f6368]">Name</span>
-                  <span className="text-sm font-medium text-[#202124]">
-                    {currentPackage.name}
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+              {/* Name */}
+              <div className="rounded-lg border border-[#dadce0] bg-white px-5 py-4">
+                <span className="text-xs font-medium uppercase tracking-wide text-[#5f6368]">
+                  Name
+                </span>
+                <p className="mt-2 text-lg font-semibold text-[#202124]">
+                  {currentPackage.name}
+                </p>
+              </div>
+              {/* Type */}
+              <div className="rounded-lg border border-[#dadce0] bg-white px-5 py-4">
+                <span className="text-xs font-medium uppercase tracking-wide text-[#5f6368]">
+                  Type
+                </span>
+                <p className="mt-2 text-lg font-semibold text-[#202124]">
+                  {currentPackage.type}
+                </p>
+              </div>
+              {/* Price */}
+              <div className="rounded-lg border border-[#dadce0] bg-white px-5 py-4">
+                <span className="text-xs font-medium uppercase tracking-wide text-[#5f6368]">
+                  Price
+                </span>
+                <p className="mt-2 text-lg font-semibold text-[#202124]">
+                  {currentPackage.price}
+                </p>
+              </div>
+              {/* From Date */}
+              <div className="rounded-lg border border-[#dadce0] bg-white px-5 py-4">
+                <span className="text-xs font-medium uppercase tracking-wide text-[#5f6368]">
+                  From
+                </span>
+                <p className="mt-2 text-lg font-semibold text-[#202124]">
+                  {currentPackage.fromDate}
+                </p>
+              </div>
+              {/* To Date */}
+              <div className="rounded-lg border border-[#dadce0] bg-white px-5 py-4">
+                <span className="text-xs font-medium uppercase tracking-wide text-[#5f6368]">
+                  To
+                </span>
+                <p className="mt-2 text-lg font-semibold text-[#202124]">
+                  {addMonths(currentPackage.fromDate, 1)}
+                </p>
+              </div>
+              {/* Charge Date / Status */}
+              <div className="rounded-lg border border-[#dadce0] bg-white px-5 py-4">
+                <span className="text-xs font-medium uppercase tracking-wide text-[#5f6368]">
+                  Charge Date / Status
+                </span>
+                <div className="mt-2 flex items-center gap-2">
+                  <span className="text-lg font-semibold text-[#202124]">
+                    {currentPackage.paidDate}
                   </span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-[#5f6368]">Price</span>
-                  <span className="text-sm font-medium text-[#202124]">
-                    {currentPackage.price}
-                  </span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-[#5f6368]">From / To</span>
-                  <span className="text-sm font-medium text-[#3c4043]">
-                    {currentPackage.fromDate} – {addMonths(currentPackage.fromDate, 1)}
-                  </span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium text-[#5f6368]">
-                    Charge date / status
-                  </span>
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm font-medium text-[#202124]">
-                      {currentPackage.paidDate}
-                    </span>
-                    {getStatusBadge(currentPackage.status)}
-                  </div>
+                  {getStatusBadge(currentPackage.status)}
                 </div>
               </div>
             </div>
@@ -206,36 +232,62 @@ export function BillingTab() {
 
           {/* Scheduled Package Tab */}
           <TabsContent value="scheduled">
-            <div className="rounded-lg border border-[#dadce0] bg-white">
-              <div className="flex flex-col gap-4 px-5 py-5">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-[#5f6368]">Name</span>
-                  <span className="text-sm font-medium text-[#202124]">
-                    {scheduledPackage.name}
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+              {/* Name */}
+              <div className="rounded-lg border border-[#dadce0] bg-white px-5 py-4">
+                <span className="text-xs font-medium uppercase tracking-wide text-[#5f6368]">
+                  Name
+                </span>
+                <p className="mt-2 text-lg font-semibold text-[#202124]">
+                  {scheduledPackage.name}
+                </p>
+              </div>
+              {/* Type */}
+              <div className="rounded-lg border border-[#dadce0] bg-white px-5 py-4">
+                <span className="text-xs font-medium uppercase tracking-wide text-[#5f6368]">
+                  Type
+                </span>
+                <p className="mt-2 text-lg font-semibold text-[#202124]">
+                  {scheduledPackage.type}
+                </p>
+              </div>
+              {/* Price */}
+              <div className="rounded-lg border border-[#dadce0] bg-white px-5 py-4">
+                <span className="text-xs font-medium uppercase tracking-wide text-[#5f6368]">
+                  Price
+                </span>
+                <p className="mt-2 text-lg font-semibold text-[#202124]">
+                  {scheduledPackage.price}
+                </p>
+              </div>
+              {/* From Date */}
+              <div className="rounded-lg border border-[#dadce0] bg-white px-5 py-4">
+                <span className="text-xs font-medium uppercase tracking-wide text-[#5f6368]">
+                  From
+                </span>
+                <p className="mt-2 text-lg font-semibold text-[#202124]">
+                  {scheduledPackage.fromDate}
+                </p>
+              </div>
+              {/* To Date */}
+              <div className="rounded-lg border border-[#dadce0] bg-white px-5 py-4">
+                <span className="text-xs font-medium uppercase tracking-wide text-[#5f6368]">
+                  To
+                </span>
+                <p className="mt-2 text-lg font-semibold text-[#202124]">
+                  {addMonths(scheduledPackage.fromDate, 1)}
+                </p>
+              </div>
+              {/* Charge Date / Status */}
+              <div className="rounded-lg border border-[#dadce0] bg-white px-5 py-4">
+                <span className="text-xs font-medium uppercase tracking-wide text-[#5f6368]">
+                  Charge Date / Status
+                </span>
+                <div className="mt-2 flex items-center gap-2">
+                  <span className="text-lg font-semibold text-[#202124]">
+                    {scheduledPackage.chargeDate}
                   </span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-[#5f6368]">Price</span>
-                  <span className="text-sm font-medium text-[#202124]">
-                    {scheduledPackage.price}
-                  </span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-[#5f6368]">From / To</span>
-                  <span className="text-sm font-medium text-[#3c4043]">
-                    {scheduledPackage.fromDate} – {addMonths(scheduledPackage.fromDate, 1)}
-                  </span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-[#5f6368]">
-                    Charge date / status
-                  </span>
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm font-medium text-[#202124]">
-                      {scheduledPackage.chargeDate}
-                    </span>
-                    {getStatusBadge(scheduledPackage.status)}
-                  </div>
+                  {getStatusBadge(scheduledPackage.status)}
                 </div>
               </div>
             </div>

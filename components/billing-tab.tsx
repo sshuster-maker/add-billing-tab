@@ -231,51 +231,6 @@ export function BillingTab() {
         </div>
       </section>
 
-      {/* Rate Plans Section */}
-      <section>
-        <h3 className="mb-4 text-xs font-semibold uppercase tracking-widest text-[#5f6368]">
-          Rate Plans
-        </h3>
-        <div className="overflow-hidden rounded border border-[#dadce0]">
-          <Table>
-            <TableHeader>
-              <TableRow className="bg-[#f8f9fa] hover:bg-[#f8f9fa]">
-                <TableHead className="text-xs font-medium text-[#5f6368]">
-                  Channel
-                </TableHead>
-                <TableHead className="text-xs font-medium text-[#5f6368]">
-                  Rate plan name
-                </TableHead>
-                <TableHead className="text-xs font-medium text-[#5f6368]">
-                  Type
-                </TableHead>
-                <TableHead className="text-xs font-medium text-[#5f6368]">
-                  Price per message/email
-                </TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {ratePlans.map((plan) => (
-                <TableRow key={plan.channel} className="hover:bg-[#f8f9fa]">
-                  <TableCell className="text-sm font-medium text-[#202124]">
-                    {plan.channel}
-                  </TableCell>
-                  <TableCell className="text-sm text-[#3c4043]">
-                    {plan.planName}
-                  </TableCell>
-                  <TableCell>
-                    {getTypeText(plan.type)}
-                  </TableCell>
-                  <TableCell className="text-sm text-[#3c4043]">
-                    {plan.pricePerMessage}
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </div>
-      </section>
-
       {/* Balance Section */}
       <section>
         <h3 className="mb-4 text-xs font-semibold uppercase tracking-widest text-[#5f6368]">
@@ -348,6 +303,51 @@ export function BillingTab() {
               )
             })}
           </div>
+        </div>
+      </section>
+
+      {/* Rate Plans Section */}
+      <section>
+        <h3 className="mb-4 text-xs font-semibold uppercase tracking-widest text-[#5f6368]">
+          Rate Plans
+        </h3>
+        <div className="overflow-hidden rounded border border-[#dadce0]">
+          <Table>
+            <TableHeader>
+              <TableRow className="bg-[#f8f9fa] hover:bg-[#f8f9fa]">
+                <TableHead className="text-xs font-medium text-[#5f6368]">
+                  Channel
+                </TableHead>
+                <TableHead className="text-xs font-medium text-[#5f6368]">
+                  Rate plan name
+                </TableHead>
+                <TableHead className="text-xs font-medium text-[#5f6368]">
+                  Type
+                </TableHead>
+                <TableHead className="text-xs font-medium text-[#5f6368]">
+                  Price per message/email
+                </TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {ratePlans.map((plan) => (
+                <TableRow key={plan.channel} className="hover:bg-[#f8f9fa]">
+                  <TableCell className="text-sm font-medium text-[#202124]">
+                    {plan.channel}
+                  </TableCell>
+                  <TableCell className="text-sm text-[#3c4043]">
+                    {plan.planName}
+                  </TableCell>
+                  <TableCell>
+                    {getTypeText(plan.type)}
+                  </TableCell>
+                  <TableCell className="text-sm text-[#3c4043]">
+                    {plan.pricePerMessage}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
         </div>
       </section>
     </div>

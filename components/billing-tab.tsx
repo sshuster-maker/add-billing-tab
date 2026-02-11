@@ -51,8 +51,10 @@ const ratePlans = [
   },
 ]
 
-const globalBalance = {
-  remaining: "$1,284.50",
+const balanceOverview = {
+  initialBalance: "$5,000.00",
+  reservedBalance: "$3,715.50",
+  creditLimit: "$10,000.00",
   currency: "USD",
 }
 
@@ -258,23 +260,44 @@ export function BillingTab() {
         </h3>
 
         <div className="flex flex-col gap-4">
-          {/* Global Balance - standalone card */}
-          <div className="rounded border border-[#dadce0] bg-[#f8f9fa] px-6 py-5">
-            <div className="flex items-center justify-between">
-              <div className="flex flex-col gap-1">
-                <span className="text-xs font-medium uppercase tracking-wide text-[#5f6368]">
-                  Global Balance
-                </span>
-                <span className="text-xs text-[#80868b]">
-                  Total remaining across all channels
-                </span>
-              </div>
-              <div className="flex items-baseline gap-1.5">
+          {/* Balance Overview - 3 cards */}
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+            <div className="rounded border border-[#dadce0] bg-[#f8f9fa] px-5 py-4">
+              <span className="text-xs font-medium uppercase tracking-wide text-[#5f6368]">
+                Initial Balance
+              </span>
+              <div className="mt-2 flex items-baseline gap-1.5">
                 <span className="text-2xl font-semibold text-[#202124]">
-                  {globalBalance.remaining}
+                  {balanceOverview.initialBalance}
                 </span>
                 <span className="text-sm text-[#80868b]">
-                  {globalBalance.currency}
+                  {balanceOverview.currency}
+                </span>
+              </div>
+            </div>
+            <div className="rounded border border-[#dadce0] bg-[#f8f9fa] px-5 py-4">
+              <span className="text-xs font-medium uppercase tracking-wide text-[#5f6368]">
+                Reserved Balance
+              </span>
+              <div className="mt-2 flex items-baseline gap-1.5">
+                <span className="text-2xl font-semibold text-[#202124]">
+                  {balanceOverview.reservedBalance}
+                </span>
+                <span className="text-sm text-[#80868b]">
+                  {balanceOverview.currency}
+                </span>
+              </div>
+            </div>
+            <div className="rounded border border-[#dadce0] bg-[#f8f9fa] px-5 py-4">
+              <span className="text-xs font-medium uppercase tracking-wide text-[#5f6368]">
+                Credit Limit
+              </span>
+              <div className="mt-2 flex items-baseline gap-1.5">
+                <span className="text-2xl font-semibold text-[#202124]">
+                  {balanceOverview.creditLimit}
+                </span>
+                <span className="text-sm text-[#80868b]">
+                  {balanceOverview.currency}
                 </span>
               </div>
             </div>

@@ -30,6 +30,13 @@ const scheduledPackage = {
   fromDate: "Mar 11, 2026",
 }
 
+const discount = {
+  amount: "$60",
+  currency: "USD",
+  fromDate: "Feb 10, 2026",
+  toDate: "Mar 10, 2026",
+}
+
 const ratePlans = [
   {
     channel: "Viber",
